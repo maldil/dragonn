@@ -154,7 +154,7 @@ def train_test_dnn_vary_data_size(prefix, model_parameters=None,
                 result = dnn.test(X_test, y_test)
                 auROCs = [result.results[i]["auROC"] for i in range(y_valid.shape[-1])]
                 # get average auROC across tasks
-                mean_auROC = sum(auROCs) / len(auROCs)
+                mean_auROC = np.mean(auROCs)
                 if mean_auROC > best_auROC:
                     best_auROC = mean_auROC
                     dnn.save(ofname_prefix)
